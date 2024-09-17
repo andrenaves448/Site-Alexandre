@@ -1,0 +1,208 @@
+<html><head><base href="https://truck-parts-emporium.com/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peças de Camião Brasil - Sua Loja Completa</title>
+<style>
+  :root {
+    --primary-color: #001f3f;
+    --secondary-color: #0077be;
+    --accent-color: #00a8e8;
+    --text-color: #e0e0e0;
+    --background-color: #000814;
+  }
+
+  body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+
+  header {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: 20px 0;
+    text-align: center;
+  }
+
+  nav {
+    background-color: var(--secondary-color);
+    padding: 10px 0;
+  }
+
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  nav ul li {
+    margin: 0 15px;
+  }
+
+  nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+
+  nav ul li a:hover {
+    color: var(--accent-color);
+  }
+
+  main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 20px rgba(0, 168, 232, 0.1);
+    border-radius: 10px;
+  }
+
+  .hero {
+    background-image: linear-gradient(rgba(0, 31, 63, 0.7), rgba(0, 31, 63, 0.7)), url('hero-truck.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 30px;
+  }
+
+  .hero h2 {
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  }
+
+  .products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+  }
+
+  .product {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--secondary-color);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 168, 232, 0.2);
+  }
+
+  .product img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+
+  .product h3 {
+    color: var(--accent-color);
+  }
+
+  footer {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 30px;
+  }
+
+  h2 {
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 10px;
+    margin-top: 40px;
+  }
+
+  #contato p {
+    margin: 10px 0;
+  }
+
+  #contato p:first-of-type {
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Peças de Camião Brasil</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="#home">Início</a></li>
+      <li><a href="#produtos">Produtos</a></li>
+      <li><a href="#sobre">Sobre Nós</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </nav>
+  <main>
+    <section id="home" class="hero">
+      <h2>Qualidade e Confiança em Peças de Camião</h2>
+    </section>
+    <section id="produtos">
+      <h2>Nossos Produtos</h2>
+      <div class="products">
+        <div class="product">
+          <img src="motor.jpg" alt="Motor de camião potente, prateado, com detalhes em azul" width="200" height="150">
+          <h3>Motores</h3>
+          <p>Motores potentes e duráveis para todos os modelos de camião.</p>
+        </div>
+        <div class="product">
+          <img src="freios.jpg" alt="Sistema de freios de camião, disco e pinça em close-up com detalhes em azul" width="200" height="150">
+          <h3>Sistemas de Freio</h3>
+          <p>Freios de alta performance para segurança máxima.</p>
+        </div>
+        <div class="product">
+          <img src="suspensao.jpg" alt="Sistema de suspensão de camião, molas e amortecedores com acabamento em azul metálico" width="200" height="150">
+          <h3>Suspensão</h3>
+          <p>Componentes de suspensão para um passeio suave e estável.</p>
+        </div>
+        <div class="product">
+          <img src="transmissao.jpg" alt="Caixa de transmissão de camião, peça mecânica complexa com detalhes em azul" width="200" height="150">
+          <h3>Transmissão</h3>
+          <p>Sistemas de transmissão eficientes para todos os tipos de carga.</p>
+        </div>
+      </div>
+    </section>
+    <section id="sobre">
+      <h2>Sobre Nós</h2>
+      <p>A Peças de Camião Brasil é líder no mercado de peças e componentes para camiões. Com mais de 20 anos de experiência, oferecemos produtos de alta qualidade das melhores marcas nacionais e internacionais. Nossa missão é manter sua frota em movimento com eficiência e segurança.</p>
+    </section>
+    <section id="contato">
+      <h2>Entre em Contato</h2>
+      <p>Estamos aqui para ajudar! Entre em contato conosco para obter mais informações sobre nossos produtos e serviços.</p>
+      <p>Email: contato@pecasdecamiaobrasil.com</p>
+      <p>Telefone: (11) 1234-5678</p>
+    </section>
+  </main>
+  <footer>
+    <p>© 2023 Peças de Camião Brasil. Todos os direitos reservados.</p>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const navLinks = document.querySelectorAll('nav a');
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+    });
+  </script>
+</body></html>
