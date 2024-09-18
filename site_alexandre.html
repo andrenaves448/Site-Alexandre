@@ -64,7 +64,7 @@
   }
 
   .hero {
-    background-image: linear-gradient(rgba(0, 31, 63, 0.7), rgba(0, 31, 63, 0.7)), url('hero-truck.jpg');
+    background-image: url('caminhao-hero.jpg');
     background-size: cover;
     background-position: center;
     height: 400px;
@@ -75,21 +75,42 @@
     text-align: center;
     border-radius: 10px;
     margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 31, 63, 0.6);
+    z-index: 1;
   }
 
   .hero h2 {
     font-size: 2.5em;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    position: relative;
+    z-index: 2;
   }
 
   .products {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    position: relative;
+    overflow: hidden;
     margin-top: 30px;
   }
 
+  .product-slider {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+
   .product {
+    flex: 0 0 calc(33.333% - 20px);
+    margin: 0 10px;
     background-color: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--secondary-color);
     border-radius: 10px;
@@ -111,6 +132,26 @@
 
   .product h3 {
     color: var(--accent-color);
+  }
+
+  .slider-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .slider-dot {
+    width: 12px;
+    height: 12px;
+    background-color: var(--secondary-color);
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .slider-dot.active {
+    background-color: var(--accent-color);
   }
 
   footer {
@@ -156,27 +197,40 @@
     <section id="produtos">
       <h2>Nossos Produtos</h2>
       <div class="products">
-        <div class="product">
-          <img src="motor.jpg" alt="Motor de camião potente, prateado, com detalhes em azul" width="200" height="150">
-          <h3>Motores</h3>
-          <p>Motores potentes e duráveis para todos os modelos de camião.</p>
-        </div>
-        <div class="product">
-          <img src="freios.jpg" alt="Sistema de freios de camião, disco e pinça em close-up com detalhes em azul" width="200" height="150">
-          <h3>Sistemas de Freio</h3>
-          <p>Freios de alta performance para segurança máxima.</p>
-        </div>
-        <div class="product">
-          <img src="suspensao.jpg" alt="Sistema de suspensão de camião, molas e amortecedores com acabamento em azul metálico" width="200" height="150">
-          <h3>Suspensão</h3>
-          <p>Componentes de suspensão para um passeio suave e estável.</p>
-        </div>
-        <div class="product">
-          <img src="transmissao.jpg" alt="Caixa de transmissão de camião, peça mecânica complexa com detalhes em azul" width="200" height="150">
-          <h3>Transmissão</h3>
-          <p>Sistemas de transmissão eficientes para todos os tipos de carga.</p>
+        <div class="product-slider" style="transform: translateX(-524px);">
+          <div class="product">
+            <img src="motor.jpg" alt="Motor de camião potente, prateado, com detalhes em azul" width="200" height="150">
+            <h3>Motores</h3>
+            <p>Motores potentes e duráveis para todos os modelos de camião.</p>
+          </div>
+          <div class="product">
+            <img src="freios.jpg" alt="Sistema de freios de camião, disco e pinça em close-up com detalhes em azul" width="200" height="150">
+            <h3>Sistemas de Freio</h3>
+            <p>Freios de alta performance para segurança máxima.</p>
+          </div>
+          <div class="product">
+            <img src="suspensao.jpg" alt="Sistema de suspensão de camião, molas e amortecedores com acabamento em azul metálico" width="200" height="150">
+            <h3>Suspensão</h3>
+            <p>Componentes de suspensão para um passeio suave e estável.</p>
+          </div>
+          <div class="product">
+            <img src="transmissao.jpg" alt="Caixa de transmissão de camião, peça mecânica complexa com detalhes em azul" width="200" height="150">
+            <h3>Transmissão</h3>
+            <p>Sistemas de transmissão eficientes para todos os tipos de carga.</p>
+          </div>
+          <div class="product">
+            <img src="eletrica.jpg" alt="Sistema elétrico de camião, fios e conectores em cores vivas" width="200" height="150">
+            <h3>Sistema Elétrico</h3>
+            <p>Componentes elétricos de alta qualidade para um funcionamento confiável.</p>
+          </div>
+          <div class="product">
+            <img src="pneus.jpg" alt="Pneus robustos de camião com sulcos profundos" width="200" height="150">
+            <h3>Pneus</h3>
+            <p>Pneus duráveis para todas as condições de estrada.</p>
+          </div>
         </div>
       </div>
+      <div class="slider-dots"><div class="slider-dot"></div><div class="slider-dot"></div><div class="slider-dot active"></div><div class="slider-dot"></div></div>
     </section>
     <section id="sobre">
       <h2>Sobre Nós</h2>
@@ -203,6 +257,42 @@
           targetElement.scrollIntoView({ behavior: 'smooth' });
         });
       });
+
+      const slider = document.querySelector('.product-slider');
+      const sliderDots = document.querySelector('.slider-dots');
+      const products = document.querySelectorAll('.product');
+      const totalSlides = products.length;
+      const visibleSlides = 3;
+      let slideIndex = 0;
+
+      // Create dots
+      for (let i = 0; i < totalSlides - visibleSlides + 1; i++) {
+        const dot = document.createElement('div');
+        dot.classList.add('slider-dot');
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => showSlide(i));
+        sliderDots.appendChild(dot);
+      }
+
+      function showSlide(index) {
+        slideIndex = index;
+        const slideWidth = products[0].offsetWidth + 20; // 20 for margins
+        slider.style.transform = `translateX(-${slideIndex * slideWidth}px)`;
+        updateDots();
+      }
+
+      function updateDots() {
+        const dots = document.querySelectorAll('.slider-dot');
+        dots.forEach((dot, index) => {
+          dot.classList.toggle('active', index === slideIndex);
+        });
+      }
+
+      // Auto slide every 5 seconds
+      setInterval(() => {
+        slideIndex = (slideIndex + 1) % (totalSlides - visibleSlides + 1);
+        showSlide(slideIndex);
+      }, 5000);
     });
   </script>
 </body></html>
